@@ -1,17 +1,17 @@
 import { Route, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { DataImporterComponent } from './data-importer/data-importer.component';
+import { ReadingDataHandlerComponent } from './reading-data-handler/reading-data-handler.component';
 
 export enum AppRoutes {
   Home = 'home',
-  DataImporter = 'data-importer',
+  DataImporter = 'reading-data-handler',
 }
 
 export const RoutesMap: Record<AppRoutes, Route> = {
   [AppRoutes.DataImporter]: {
     path: AppRoutes.DataImporter,
     title: 'Daily Read | Data Importer',
-    component: DataImporterComponent,
+    component: ReadingDataHandlerComponent,
   },
   [AppRoutes.Home]: {
     path: AppRoutes.Home,

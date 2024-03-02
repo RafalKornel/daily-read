@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DataImporterComponent } from './data-importer.component';
+import { ReadingDataHandlerComponent } from './reading-data-handler.component';
 
 describe('DataImporterComponent', () => {
-  let component: DataImporterComponent;
-  let fixture: ComponentFixture<DataImporterComponent>;
+  let component: ReadingDataHandlerComponent;
+  let fixture: ComponentFixture<ReadingDataHandlerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DataImporterComponent]
+      imports: [ReadingDataHandlerComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(DataImporterComponent);
+    fixture = TestBed.createComponent(ReadingDataHandlerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
