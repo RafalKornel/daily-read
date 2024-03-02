@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { DataImporterService } from '../data-importer/data-importer.service';
 import { FormsModule } from '@angular/forms';
+import { ReadingDayModel } from '../data-importer/ReadingDayModel';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +15,24 @@ export class HomeComponent {
 
   currentDay: number;
 
-  constructor() {
+  currentDayData?: ReadingDayModel;
+
+  constructor(private dataImporterService: DataImporterService) {
     this.currentDay = this.getCurrentDay() || 0;
+
+    this.getDataForCurrentDay();
+  }
+
+  getDataForCurrentDay() {
+    const localData = this.dataImporterService.getLocalData();
+
+    const currentDayData = localData?.find(
+      (e) => e.dayIndex === this.currentDay
+    );
+
+    this.currentDayData = currentDayData;
+
+    return currentDayData;
   }
 
   getCurrentDay() {
@@ -38,6 +56,8 @@ export class HomeComponent {
     this.currentDay = day;
 
     localStorage.setItem(HomeComponent.LOCAL_STORAGE_KEY, String(day));
+
+    this.getDataForCurrentDay();
   }
 
   completeCurrentDay() {
@@ -46,5 +66,7 @@ export class HomeComponent {
     currentDay++;
 
     this.saveCurrentDay(currentDay);
+
+    this.getDataForCurrentDay();
   }
 }
