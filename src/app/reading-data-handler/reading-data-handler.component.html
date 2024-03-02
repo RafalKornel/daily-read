@@ -1,31 +1,82 @@
 <p>reading-data-handler works!</p>
 
-<button (click)="getData()">Get data</button>
+<form (submit)="handleFetchData()">
+  <label class="form-control w-full max-w-xs">
+    <div class="label">
+      <span class="label-text">Spreadsheet ID</span>
+    </div>
+    <input
+      [(ngModel)]="spreadsheetId"
+      name="spreadsheetId"
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+    />
+    <div class="label"></div>
+  </label>
 
-<label class="form-control w-full max-w-xs">
-  <div class="label">
-    <span class="label-text">Spreadsheet ID</span>
-  </div>
-  <input
-    [(ngModel)]="spreadsheetId"
-    name="spreadsheetId"
-    type="text"
-    placeholder="Type here"
-    class="input input-bordered w-full max-w-xs"
-  />
-  <div class="label"></div>
-</label>
+  <label class="form-control w-full max-w-xs">
+    <div class="label">
+      <span class="label-text">Sheet ID</span>
+    </div>
+    <input
+      [(ngModel)]="sheetId"
+      name="sheetId"
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+    />
+    <div class="label"></div>
+  </label>
 
-<label class="form-control w-full max-w-xs">
-  <div class="label">
-    <span class="label-text">Sheet ID</span>
-  </div>
-  <input
-    [(ngModel)]="sheetId"
-    name="sheetId"
-    type="text"
-    placeholder="Type here"
-    class="input input-bordered w-full max-w-xs"
-  />
-  <div class="label"></div>
-</label>
+  <label class="form-control w-full max-w-xs">
+    <div class="label">
+      <span class="label-text">Range</span>
+    </div>
+    <input
+      [(ngModel)]="range"
+      name="range"
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+    />
+    <div class="label"></div>
+  </label>
+
+  <button class="btn btn-neutral" [disabled]="this.isFetching">
+    @if(this.isFetching) {<span class="loading loading-spinner"></span>}
+
+    <span> GetData </span>
+  </button>
+</form>
+
+<button class="btn btn-secondary" (click)="this.clearData()">Clear</button>
+
+@if (this.data) {
+<div class="overflow-x-auto">
+  <table class="table table-xs">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Period</th>
+        <th>First reading</th>
+        <th>Second reading</th>
+        <th>Third reading</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for( entry of this.data; track entry.dayIndex) {
+      <tr>
+        <th>{{ entry.dayIndex }}</th>
+        <td>{{ entry.period }}</td>
+        <td>{{ entry.firstReading.name }}</td>
+        <td>{{ entry.secondReading?.name }}</td>
+        <td>{{ entry.thirdReading.name }}</td>
+      </tr>
+
+      }
+    </tbody>
+  </table>
+</div>
+}

@@ -23,4 +23,5 @@ export const RoutesMap: Record<AppRoutes, Route> = {
 export const routes: Routes = [
   RoutesMap[AppRoutes.DataImporter],
   RoutesMap[AppRoutes.Home],
+  { path: '**', redirectTo: 'home' },
 ];
