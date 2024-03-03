@@ -1,0 +1,24 @@
+<button
+  class="btn min-h-5 min-w-5"
+  [class]="buttonClass"
+  onclick="my_modal_1.showModal()"
+>
+  <ng-content select="[button-content]"> </ng-content>
+</button>
+
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    @if(headerText) {
+    <h3 class="font-bold text-lg">{{ headerText }}</h3>
+    }
+
+    <ng-content></ng-content>
+
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>

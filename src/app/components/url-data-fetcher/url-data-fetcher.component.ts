@@ -4,13 +4,13 @@ import { DataHandlerService } from '../../services/data-handler/data-handler.ser
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-data-fetcher-page',
+  selector: 'app-url-data-fetcher',
   standalone: true,
   imports: [FormsModule, AsyncPipe],
-  templateUrl: './data-fetcher-page.component.html',
-  styleUrl: './data-fetcher-page.component.scss',
+  templateUrl: './url-data-fetcher.component.html',
+  styleUrl: './url-data-fetcher.component.scss',
 })
-export class DataFetcherPageComponent {
+export class UrlDataFetcherComponent {
   url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8lV5rne65BYVKkLVaQGDMQiaDliI3MJjV13YL8Ou-hRxQzfDTOULj4440nrIzbMqrLMJVFJ0ffdkX/pub?gid=2078441506&single=true&output=csv&range=A2:E366`;
 
   isFetching: boolean = false;
@@ -20,12 +20,8 @@ export class DataFetcherPageComponent {
   async handleFetchData() {
     this.isFetching = true;
 
-    this.dataImporterService.fetchDataAngular(this.url).subscribe(() => {
+    this.dataImporterService.fetchData(this.url).subscribe(() => {
       this.isFetching = false;
     });
-  }
-
-  clearData() {
-    this.dataImporterService.clearLocalData();
   }
 }

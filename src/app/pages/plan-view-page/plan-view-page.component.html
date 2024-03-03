@@ -1,6 +1,31 @@
-@if (this.data) {
-<div class="overflow-x-auto">
-  <table class="table table-xs">
+<app-modal
+  headerText="Manage data"
+  buttonClass="fixed right-5 bottom-20 btn-accent btn-square z-10"
+>
+  <svg
+    button-content
+    xmlns="http://www.w3.org/2000/svg"
+    fill="#000000"
+    class="w-5 h-5"
+    viewBox="0 0 16 16"
+  >
+    <path
+      d="M8,6.5A1.5,1.5,0,1,1,6.5,8,1.5,1.5,0,0,1,8,6.5ZM.5,8A1.5,1.5,0,1,0,2,6.5,1.5,1.5,0,0,0,.5,8Zm12,0A1.5,1.5,0,1,0,14,6.5,1.5,1.5,0,0,0,12.5,8Z"
+    />
+  </svg>
+
+  <div class="flex flex-col w-full gap-4">
+    <app-url-data-fetcher />
+
+    <app-manual-progress-setter />
+
+    <app-clear-data-button />
+  </div>
+</app-modal>
+
+@if (this.dataHandlerService.localData) {
+<div class="overflow-x-auto overflow-y-scroll max-h-full">
+  <table class="table table-xs table-pin-cols">
     <!-- head -->
     <thead>
       <tr>
@@ -12,7 +37,7 @@
       </tr>
     </thead>
     <tbody>
-      @for( entry of this.data; track entry.dayIndex) {
+      @for( entry of this.dataHandlerService.localData; track entry.dayIndex) {
       <tr>
         <th>{{ entry.dayIndex }}</th>
         <td>{{ entry.period }}</td>

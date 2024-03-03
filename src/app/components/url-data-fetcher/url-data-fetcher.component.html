@@ -1,5 +1,5 @@
-<form (submit)="handleFetchData()">
-  <label class="form-control w-full max-w-xs">
+<form (submit)="handleFetchData()" class="flex flex-col">
+  <label class="form-control w-full">
     <div class="label">
       <span class="label-text">Spreadsheet URL</span>
     </div>
@@ -8,7 +8,7 @@
       name="url"
       type="url"
       placeholder="Type here"
-      class="input input-bordered w-full max-w-xs"
+      class="input input-bordered w-full"
     />
     <div class="label"></div>
   </label>
@@ -16,8 +16,6 @@
   <button class="btn btn-neutral" [disabled]="this.isFetching">
     @if(this.isFetching) {<span class="loading loading-spinner"></span>}
 
-    <span> GetData </span>
+    <span> Download data </span>
   </button>
 </form>
-
-<button class="btn btn-secondary" (click)="this.clearData()">Clear</button>

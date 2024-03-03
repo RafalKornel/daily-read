@@ -1,7 +1,11 @@
-<div class="text-center w-full">
+<div class="text-center w-full h-16">
   <h1 class="text-5xl font-bold">Daily Read</h1>
 </div>
 
-<router-outlet />
+<div
+  class="flex flex-col gap-4 mb-16 overflow-y-scroll relative w-full h-[calc(100vh-theme(space.32))] [&>*]:m-auto"
+>
+  <router-outlet class="hidden" />
+</div>
 
 <app-bottom-navigation />
