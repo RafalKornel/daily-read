@@ -1,7 +1,7 @@
 import { Route, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { DataFetcherPageComponent } from './data-fetcher-page/data-fetcher-page.component';
-import { PlanViewComponent } from './plan-view/plan-view.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { DataFetcherPageComponent } from './pages/data-fetcher-page/data-fetcher-page.component';
+import { PlanViewPageComponent } from './pages/plan-view-page/plan-view-page.component';
 
 export enum AppRoutes {
   Home = 'home',
@@ -18,12 +18,12 @@ export const RoutesMap: Record<AppRoutes, Route> = {
   [AppRoutes.Home]: {
     path: AppRoutes.Home,
     title: 'Daily Read',
-    component: HomeComponent,
+    component: HomePageComponent,
   },
   [AppRoutes.PlanViewer]: {
     path: AppRoutes.PlanViewer,
     title: 'Plan Viewer',
-    component: PlanViewComponent,
+    component: PlanViewPageComponent,
   },
 } as const;
 

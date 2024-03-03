@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DataHandlerService } from '../data-handler/data-handler.service';
-import { ReadingDayModel } from '../data-handler/ReadingDayModel';
+import { DataHandlerService } from '../../data-handler/data-handler.service';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -9,7 +8,7 @@ import { AsyncPipe } from '@angular/common';
   standalone: true,
   imports: [FormsModule, AsyncPipe],
   templateUrl: './data-fetcher-page.component.html',
-  styleUrl: './reading-data-handler.component.scss',
+  styleUrl: './data-fetcher-page.component.scss',
 })
 export class DataFetcherPageComponent {
   url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8lV5rne65BYVKkLVaQGDMQiaDliI3MJjV13YL8Ou-hRxQzfDTOULj4440nrIzbMqrLMJVFJ0ffdkX/pub?gid=2078441506&single=true&output=csv&range=A2:E366`;

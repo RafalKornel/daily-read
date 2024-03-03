@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { DataHandlerService } from '../data-handler/data-handler.service';
+import { DataHandlerService } from '../../data-handler/data-handler.service';
 import { FormsModule } from '@angular/forms';
-import { ReadingDayModel } from '../data-handler/ReadingDayModel';
+import { ReadingDayModel } from '../../data-handler/ReadingDayModel';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-page',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  templateUrl: './home-page.component.html',
+  styleUrl: './home-page.component.scss',
 })
-export class HomeComponent {
+export class HomePageComponent {
   static CURRENT_DAY_STORAGE_KEY = 'current_day_key';
 
   currentDayData?: ReadingDayModel;
