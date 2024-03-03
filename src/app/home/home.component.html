@@ -25,13 +25,13 @@
       placeholder="Type here"
       class="input input-bordered w-full max-w-xs"
       [ngModel]="currentDay"
-      (ngModelChange)="this.saveCurrentDay($event)"
+      (ngModelChange)="this.currentDay = $event"
     />
 
     <p class="py-4">Press ESC key or click the button below to close</p>
     <div class="modal-action">
       <form method="dialog">
-        <button class="btn" (click)="this.saveCurrentDay(1)" type="button">
+        <button class="btn" (click)="this.currentDay = 1" type="button">
           Clear
         </button>
 

@@ -7,16 +7,64 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class DataHandlerService {
-  static LOCAL_STORAGE_KEY = 'reading_data';
+  static READINGS_STORAGE_KEY = 'reading_data';
+  static CURRENT_DAY_STORAGE_KEY = 'current_day';
 
-  constructor(private http: HttpClient) {}
+  constructor() {
+    this.getDataForCurrentDay();
+  }
 
-  getStorageKey() {
-    return DataHandlerService.LOCAL_STORAGE_KEY;
+  getCurrentDay() {
+    const value = localStorage.getItem(
+      DataHandlerService.CURRENT_DAY_STORAGE_KEY
+    );
+
+    if (!value) {
+      return 1;
+    }
+
+    try {
+      const intValue = Number.parseInt(value);
+
+      return intValue;
+    } catch (e) {
+      return 1;
+    }
+  }
+
+  getDataForCurrentDay() {
+    const localData = this.getLocalData();
+
+    const currentDay = this.getCurrentDay();
+
+    const currentDayData = localData?.find((e) => e.dayIndex === currentDay);
+
+    return currentDayData;
+  }
+
+  saveCurrentDay(day: number) {
+    localStorage.setItem(
+      DataHandlerService.CURRENT_DAY_STORAGE_KEY,
+      String(day)
+    );
+
+    this.getDataForCurrentDay();
+  }
+
+  completeCurrentDay() {
+    let currentDay = this.getCurrentDay() || 0;
+
+    currentDay++;
+
+    this.saveCurrentDay(currentDay);
+
+    this.getDataForCurrentDay();
   }
 
   getLocalData(): ReadingDayModel[] | undefined {
-    const localData = localStorage.getItem(this.getStorageKey());
+    const localData = localStorage.getItem(
+      DataHandlerService.READINGS_STORAGE_KEY
+    );
 
     if (!localData) return undefined;
 
@@ -24,16 +72,14 @@ export class DataHandlerService {
   }
 
   saveLocalData(data: string) {
-    localStorage.setItem(this.getStorageKey(), data);
+    localStorage.setItem(DataHandlerService.READINGS_STORAGE_KEY, data);
   }
 
   clearLocalData() {
-    localStorage.removeItem(this.getStorageKey());
+    localStorage.removeItem(DataHandlerService.READINGS_STORAGE_KEY);
   }
 
-  async fetchData(spreadsheetId: string, sheetId: string, range: string) {
-    const url = `https://docs.google.com/spreadsheets/d/e/${spreadsheetId}/pub?gid=${sheetId}&single=true&output=csv&range=${range}`;
-
+  async fetchData(url: string) {
     const response = await fetch(url, {
       headers: {
         Accept: 'application/json',
@@ -45,12 +91,6 @@ export class DataHandlerService {
     this.saveLocalData(text);
 
     return DataHandlerService.parseStringCSVToReadingModel(text);
-
-    // return this.http
-    //   .get<string>(url)
-    //   .pipe(
-    //     map((value) => DataImporterService.parseStringCSVToReadingModel(value))
-    //   );
   }
 
   static parseStringCSVToReadingModel(

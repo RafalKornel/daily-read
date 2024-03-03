@@ -11,62 +11,30 @@ import { ReadingDayModel } from '../data-handler/ReadingDayModel';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  static LOCAL_STORAGE_KEY = 'current_day_key';
-
-  currentDay: number;
+  static CURRENT_DAY_STORAGE_KEY = 'current_day_key';
 
   currentDayData?: ReadingDayModel;
 
-  constructor(private dataImporterService: DataHandlerService) {
-    this.currentDay = this.getCurrentDay() || 0;
-
-    this.getDataForCurrentDay();
+  constructor(private dataHandlerService: DataHandlerService) {
+    this.updateCurrentDayData();
   }
 
-  getDataForCurrentDay() {
-    const localData = this.dataImporterService.getLocalData();
-
-    const currentDayData = localData?.find(
-      (e) => e.dayIndex === this.currentDay
-    );
-
+  updateCurrentDayData() {
+    const currentDayData = this.dataHandlerService.getDataForCurrentDay();
     this.currentDayData = currentDayData;
-
-    return currentDayData;
   }
 
-  getCurrentDay() {
-    const value = localStorage.getItem(HomeComponent.LOCAL_STORAGE_KEY);
-
-    if (!value) {
-      return 1;
-    }
-
-    try {
-      const intValue = Number.parseInt(value);
-
-      return intValue;
-    } catch (e) {
-      return 1;
-    }
+  get currentDay() {
+    return this.dataHandlerService.getCurrentDay();
   }
 
-  saveCurrentDay(day: number | string) {
+  set currentDay(day: number | string) {
     day = typeof day === 'string' ? Number.parseInt(day) : day;
-    this.currentDay = day;
 
-    localStorage.setItem(HomeComponent.LOCAL_STORAGE_KEY, String(day));
-
-    this.getDataForCurrentDay();
+    this.dataHandlerService.saveCurrentDay(day);
   }
 
   completeCurrentDay() {
-    let currentDay = this.getCurrentDay() || 0;
-
-    currentDay++;
-
-    this.saveCurrentDay(currentDay);
-
-    this.getDataForCurrentDay();
+    this.dataHandlerService.completeCurrentDay();
   }
 }

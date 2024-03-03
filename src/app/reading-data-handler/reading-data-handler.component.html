@@ -1,40 +1,12 @@
 <form (submit)="handleFetchData()">
   <label class="form-control w-full max-w-xs">
     <div class="label">
-      <span class="label-text">Spreadsheet ID</span>
+      <span class="label-text">Spreadsheet URL</span>
     </div>
     <input
-      [(ngModel)]="spreadsheetId"
-      name="spreadsheetId"
-      type="text"
-      placeholder="Type here"
-      class="input input-bordered w-full max-w-xs"
-    />
-    <div class="label"></div>
-  </label>
-
-  <label class="form-control w-full max-w-xs">
-    <div class="label">
-      <span class="label-text">Sheet ID</span>
-    </div>
-    <input
-      [(ngModel)]="sheetId"
-      name="sheetId"
-      type="text"
-      placeholder="Type here"
-      class="input input-bordered w-full max-w-xs"
-    />
-    <div class="label"></div>
-  </label>
-
-  <label class="form-control w-full max-w-xs">
-    <div class="label">
-      <span class="label-text">Range</span>
-    </div>
-    <input
-      [(ngModel)]="range"
-      name="range"
-      type="text"
+      [(ngModel)]="url"
+      name="url"
+      type="url"
       placeholder="Type here"
       class="input input-bordered w-full max-w-xs"
     />
