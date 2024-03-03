@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { PlanViewPageComponent } from '../plan-view/plan-view.component';
+import { PlanViewPageComponent } from './plan-view-page.component';
 
 describe('PlanViewPageComponent', () => {
   let component: PlanViewPageComponent;
@@ -8,10 +7,9 @@ describe('PlanViewPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlanViewPageComponent]
-    })
-    .compileComponents();
-    
+      imports: [PlanViewPageComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(PlanViewPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
