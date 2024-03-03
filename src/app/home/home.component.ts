@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { DataImporterService } from '../data-importer/data-importer.service';
+import { DataHandlerService } from '../data-handler/data-handler.service';
 import { FormsModule } from '@angular/forms';
-import { ReadingDayModel } from '../data-importer/ReadingDayModel';
+import { ReadingDayModel } from '../data-handler/ReadingDayModel';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +17,7 @@ export class HomeComponent {
 
   currentDayData?: ReadingDayModel;
 
-  constructor(private dataImporterService: DataImporterService) {
+  constructor(private dataImporterService: DataHandlerService) {
     this.currentDay = this.getCurrentDay() || 0;
 
     this.getDataForCurrentDay();

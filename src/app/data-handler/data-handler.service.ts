@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ReadingDayModel } from '../data-importer/ReadingDayModel';
-import { ReadingEntry } from '../data-importer/ReadingEntry';
+import { ReadingDayModel } from './ReadingDayModel';
+import { ReadingEntry } from './ReadingEntry';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DataImporterService {
+export class DataHandlerService {
   static LOCAL_STORAGE_KEY = 'reading_data';
 
   constructor(private http: HttpClient) {}
 
   getStorageKey() {
-    return DataImporterService.LOCAL_STORAGE_KEY;
+    return DataHandlerService.LOCAL_STORAGE_KEY;
   }
 
   getLocalData(): ReadingDayModel[] | undefined {
@@ -21,7 +20,7 @@ export class DataImporterService {
 
     if (!localData) return undefined;
 
-    return DataImporterService.parseStringCSVToReadingModel(localData);
+    return DataHandlerService.parseStringCSVToReadingModel(localData);
   }
 
   saveLocalData(data: string) {
@@ -45,7 +44,7 @@ export class DataImporterService {
 
     this.saveLocalData(text);
 
-    return DataImporterService.parseStringCSVToReadingModel(text);
+    return DataHandlerService.parseStringCSVToReadingModel(text);
 
     // return this.http
     //   .get<string>(url)
@@ -66,14 +65,10 @@ export class DataImporterService {
 
       lines.forEach((line) => {
         const [
-          completed,
           dayString,
-          ,
           period,
           firstReadingString,
-          ,
           secondReadingString,
-          ,
           thirdReadingString,
         ] = line.split(delimeter);
 

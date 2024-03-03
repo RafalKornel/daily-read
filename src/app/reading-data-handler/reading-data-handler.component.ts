@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DataImporterService } from '../data-importer/data-importer.service';
+import { DataHandlerService } from '../data-handler/data-handler.service';
 import { Observable } from 'rxjs';
-import { ReadingDayModel } from '../data-importer/ReadingDayModel';
+import { ReadingDayModel } from '../data-handler/ReadingDayModel';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -16,13 +16,13 @@ export class ReadingDataHandlerComponent {
   spreadsheetId =
     '2PACX-1vQ8lV5rne65BYVKkLVaQGDMQiaDliI3MJjV13YL8Ou-hRxQzfDTOULj4440nrIzbMqrLMJVFJ0ffdkX';
   sheetId = '2078441506';
-  range = 'A7:K371';
+  range = 'A2:E366';
 
   data?: ReadingDayModel[];
 
   isFetching: boolean = false;
 
-  constructor(private dataImporterService: DataImporterService) {
+  constructor(private dataImporterService: DataHandlerService) {
     this.data = dataImporterService.getLocalData();
   }
 
