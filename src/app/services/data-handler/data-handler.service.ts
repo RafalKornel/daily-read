@@ -82,6 +82,26 @@ export class DataHandlerService {
     );
   }
 
+  get maxDay() {
+    if (!this.localData) return -1;
+
+    let maximumDay = -1;
+
+    this.localData.forEach((dayData) => {
+      if (dayData.dayIndex > maximumDay) {
+        maximumDay = dayData.dayIndex;
+      }
+    });
+
+    return maximumDay;
+  }
+
+  get hasFinishedAllReadings(): boolean {
+    if (!this.localData) return false;
+
+    return this.currentDay > this.maxDay;
+  }
+
   // async fetchData(url: string) {
   //   const response = await fetch(url, {
   //     headers: {

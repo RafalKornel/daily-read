@@ -1,25 +1,61 @@
-<div>Current day: {{ this.dataHandlerService.currentDay }}</div>
+@if (!this.dataHandlerService.localData) {
+<div class="flex flex-col justify-center align-middle gap-4">
+  <div>Please upload reading plan.</div>
+  <button class="btn btn-primary">
+    <a [routerLink]="PlanViewerRoute"> Navigate to plan tab </a>
+  </button>
+</div>
+} @else if (this.dataHandlerService.hasFinishedAllReadings) {
+<div>You finished your program!</div>
+} @else if (!this.dataHandlerService.currentDayData) {
+<div>No reading for today.</div>
+} @else {
+<div class="flex flex-col gap-4">
+  <div class="alert flex flex-col w-full">
+    <div class="flex align-middle justify-between gap-4 w-full">
+      <p>
+        Day {{ dataHandlerService.currentDay }} /
+        {{ dataHandlerService.maxDay }}
+      </p>
 
-<button class="btn" (click)="this.dataHandlerService.completeCurrentDay()">
-  Complete reading
-</button>
+      <progress
+        class="progress progress-info max-w-56 my-auto"
+        [value]="dataHandlerService.currentDay"
+        [max]="dataHandlerService.maxDay"
+      ></progress>
+    </div>
 
-@if (this.dataHandlerService.currentDayData) {
-<h2>Current day reading</h2>
+    <div class="w-full">
+      Period: {{ this.dataHandlerService.currentDayData.period }}
+    </div>
+  </div>
 
-<ul>
-  <li>Period: {{ this.dataHandlerService.currentDayData.period }}</li>
-  <li>
-    First reading:
-    {{ this.dataHandlerService.currentDayData.firstReading.name }}
-  </li>
-  <li>
-    Second reading:
-    {{ this.dataHandlerService.currentDayData.secondReading?.name }}
-  </li>
-  <li>
-    Third reading:
-    {{ this.dataHandlerService.currentDayData.thirdReading.name }}
-  </li>
-</ul>
+  <app-reading-card
+    variant="primary"
+    readingTitle="First reading"
+    imageUrl="/assets/first-reading.jpg"
+    [readingName]="this.dataHandlerService.currentDayData.firstReading.name"
+  />
+
+  @if(this.dataHandlerService.currentDayData.secondReading) {
+  <app-reading-card
+    variant="secondary"
+    readingTitle="Second reading"
+    imageUrl="/assets/second-reading.jpg"
+    [readingName]="this.dataHandlerService.currentDayData.secondReading.name"
+  />
+  }
+
+  <app-reading-card
+    variant="accent"
+    readingTitle="Third reading"
+    imageUrl="/assets/third-reading.jpg"
+    [readingName]="this.dataHandlerService.currentDayData.thirdReading.name"
+  />
+
+  <button class="btn" (click)="this.dataHandlerService.completeCurrentDay()">
+    Complete reading
+  </button>
+</div>
+
 }
