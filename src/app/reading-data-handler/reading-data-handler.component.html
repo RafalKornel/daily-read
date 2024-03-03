@@ -21,32 +21,3 @@
 </form>
 
 <button class="btn btn-secondary" (click)="this.clearData()">Clear</button>
-
-@if (this.data) {
-<div class="overflow-x-auto">
-  <table class="table table-xs">
-    <!-- head -->
-    <thead>
-      <tr>
-        <th>Day</th>
-        <th>Period</th>
-        <th>First reading</th>
-        <th>Second reading</th>
-        <th>Third reading</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for( entry of this.data; track entry.dayIndex) {
-      <tr>
-        <th>{{ entry.dayIndex }}</th>
-        <td>{{ entry.period }}</td>
-        <td>{{ entry.firstReading.name }}</td>
-        <td>{{ entry.secondReading?.name }}</td>
-        <td>{{ entry.thirdReading.name }}</td>
-      </tr>
-
-      }
-    </tbody>
-  </table>
-</div>
-}

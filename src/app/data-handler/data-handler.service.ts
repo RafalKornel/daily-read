@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ReadingDayModel } from './ReadingDayModel';
 import { ReadingEntry } from './ReadingEntry';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class DataHandlerService {
   static READINGS_STORAGE_KEY = 'reading_data';
   static CURRENT_DAY_STORAGE_KEY = 'current_day';
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.getDataForCurrentDay();
   }
 
@@ -77,6 +78,20 @@ export class DataHandlerService {
 
   clearLocalData() {
     localStorage.removeItem(DataHandlerService.READINGS_STORAGE_KEY);
+  }
+
+  fetchDataAngular(url: string) {
+    const headers = new HttpHeaders().set(
+      'Content-Type',
+      'text/plain; charset=utf-8'
+    );
+
+    return this.http
+      .get(url, { headers, responseType: 'text' as const })
+      .pipe(
+        tap((text) => this.saveLocalData(text)),
+        map((value) => DataHandlerService.parseStringCSVToReadingModel(value))
+      );
   }
 
   async fetchData(url: string) {

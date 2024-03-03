@@ -13,4 +13,5 @@ import { AppRoutes } from '../app.routes';
 export class BottomNavigationComponent {
   HomeRoute = `/${AppRoutes.Home}`;
   DataImporterRoute = `/${AppRoutes.DataImporter}`;
+  PlanViewer = `/${AppRoutes.PlanViewer}`;
 }

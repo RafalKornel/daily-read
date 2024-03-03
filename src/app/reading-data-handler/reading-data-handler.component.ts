@@ -14,24 +14,19 @@ import { AsyncPipe } from '@angular/common';
 export class ReadingDataHandlerComponent {
   url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8lV5rne65BYVKkLVaQGDMQiaDliI3MJjV13YL8Ou-hRxQzfDTOULj4440nrIzbMqrLMJVFJ0ffdkX/pub?gid=2078441506&single=true&output=csv&range=A2:E366`;
 
-  data?: ReadingDayModel[];
-
   isFetching: boolean = false;
 
-  constructor(private dataImporterService: DataHandlerService) {
-    this.data = dataImporterService.getLocalData();
-  }
+  constructor(private dataImporterService: DataHandlerService) {}
 
   async handleFetchData() {
     this.isFetching = true;
 
-    this.data = await this.dataImporterService.fetchData(this.url);
-
-    this.isFetching = false;
+    this.dataImporterService.fetchDataAngular(this.url).subscribe(() => {
+      this.isFetching = false;
+    });
   }
 
   clearData() {
-    this.data = undefined;
     this.dataImporterService.clearLocalData();
   }
 }
