@@ -10,7 +10,7 @@
     "deploy": "gh-pages -d dist"
   },
   "private": true,
-  "homepage": "https://github.com/RafalKornel/daily-read/",
+  "homepage": "https://rafalkornel.github.io/daily-read/",
   "dependencies": {
     "@angular/animations": "^17.2.0",
     "@angular/common": "^17.2.0",
