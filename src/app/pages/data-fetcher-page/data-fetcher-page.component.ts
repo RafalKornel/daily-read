@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DataHandlerService } from '../../data-handler/data-handler.service';
+import { DataHandlerService } from '../../services/data-handler/data-handler.service';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

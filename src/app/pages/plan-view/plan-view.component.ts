@@ -3,13 +3,13 @@ import { ReadingDayModel } from '../../services/data-handler/ReadingDayModel';
 import { DataHandlerService } from '../../services/data-handler/data-handler.service';
 
 @Component({
-  selector: 'app-plan-view-page',
+  selector: 'app-plan-view',
   standalone: true,
   imports: [],
-  templateUrl: './plan-view-page.component.html',
-  styleUrl: './plan-view-page.component.scss',
+  templateUrl: './plan-view.component.html',
+  styleUrl: './plan-view.component.scss',
 })
-export class PlanViewPageComponent {
+export class PlanViewComponent {
   data?: ReadingDayModel[];
 
   constructor(private dataHandlerService: DataHandlerService) {

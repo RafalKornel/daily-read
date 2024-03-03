@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { ReadingDayModel } from '../../services/data-handler/ReadingDayModel';
 
 @Component({
-  selector: 'app-home-page',
+  selector: 'app-home',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
 })
-export class HomePageComponent {
+export class HomeComponent {
   static CURRENT_DAY_STORAGE_KEY = 'current_day_key';
 
   currentDayData?: ReadingDayModel;
