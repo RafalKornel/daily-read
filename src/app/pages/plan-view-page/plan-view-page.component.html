@@ -24,22 +24,29 @@
 </app-modal>
 
 @if (this.dataHandlerService.localData) {
-<div class="overflow-x-auto overflow-y-scroll max-h-full">
-  <table class="table table-xs table-pin-cols">
-    <!-- head -->
+<div class="overflow-x-auto max-h-[calc(100svh-theme(space.28))]">
+  <table class="table table-xs table-pin-rows">
     <thead>
       <tr>
         <th>Day</th>
         <th>Period</th>
-        <th>First reading</th>
-        <th>Second reading</th>
-        <th>Third reading</th>
+        <th>First</th>
+        <th>Second</th>
+        <th>Third</th>
       </tr>
     </thead>
     <tbody>
       @for( entry of this.dataHandlerService.localData; track entry.dayIndex) {
-      <tr>
-        <th>{{ entry.dayIndex }}</th>
+      <tr
+        [class]="
+          this.dataHandlerService.currentDay > entry.dayIndex
+            ? 'bg-base-200'
+            : this.dataHandlerService.currentDay === entry.dayIndex
+            ? 'bg-base-300 border-'
+            : ''
+        "
+      >
+        <td>{{ entry.dayIndex }}</td>
         <td>{{ entry.period }}</td>
         <td>{{ entry.firstReading.name }}</td>
         <td>{{ entry.secondReading?.name }}</td>

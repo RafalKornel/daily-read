@@ -1,4 +1,16 @@
-<div class="bg-{{ variant }} card w-96 text-primary-content">
+<div
+  [class]="[
+    'card',
+    'card-compact',
+    'w-full',
+    'text-primary-content',
+    variant === 'primary'
+      ? 'bg-primary'
+      : variant === 'secondary'
+      ? 'bg-secondary'
+      : 'bg-accent'
+  ]"
+>
   <div class="card-body">
     <h2 class="card-title">{{ readingTitle }}</h2>
     <div class="flex">
