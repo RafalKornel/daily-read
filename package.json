@@ -7,9 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "gh-pages -d dist/daily-read/browser"
+    "deploy": "gh-pages -d dist"
   },
   "private": true,
+  "homepage": "https://github.com/RafalKornel/daily-read/",
   "dependencies": {
     "@angular/animations": "^17.2.0",
     "@angular/common": "^17.2.0",
