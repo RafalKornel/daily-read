@@ -5,13 +5,13 @@ import { ReadingDayModel } from '../data-handler/ReadingDayModel';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-reading-data-handler',
+  selector: 'app-data-fetcher-page',
   standalone: true,
   imports: [FormsModule, AsyncPipe],
-  templateUrl: './reading-data-handler.component.html',
+  templateUrl: './data-fetcher-page.component.html',
   styleUrl: './reading-data-handler.component.scss',
 })
-export class ReadingDataHandlerComponent {
+export class DataFetcherPageComponent {
   url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8lV5rne65BYVKkLVaQGDMQiaDliI3MJjV13YL8Ou-hRxQzfDTOULj4440nrIzbMqrLMJVFJ0ffdkX/pub?gid=2078441506&single=true&output=csv&range=A2:E366`;
 
   isFetching: boolean = false;
