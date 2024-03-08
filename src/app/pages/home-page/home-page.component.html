@@ -10,16 +10,16 @@
 } @else if (!this.dataHandlerService.currentDayData) {
 <div>No reading for today.</div>
 } @else {
-<div class="flex flex-col gap-2 w-[94vw]">
+<div class="flex flex-col gap-4 w-[94vw]">
   <div class="alert flex flex-col w-full">
-    <div class="flex align-middle justify-between gap-4 w-full">
+    <div class="flex align-middle justify-between gap-4 w-full flex-1">
       <p>
         Day {{ dataHandlerService.currentDay }} /
         {{ dataHandlerService.maxDay }}
       </p>
 
       <progress
-        class="progress progress-info max-w-56 my-auto"
+        class="progress progress-info my-auto flex-1"
         [value]="dataHandlerService.currentDay"
         [max]="dataHandlerService.maxDay"
       ></progress>

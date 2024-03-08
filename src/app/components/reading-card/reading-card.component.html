@@ -12,12 +12,17 @@
   ]"
 >
   <div class="card-body">
-    <h2 class="card-title">{{ readingTitle }}</h2>
-    <div class="flex">
-      <p>{{ readingName }}</p>
-      <button class="btn">
-        <a [href]="bibleGatewayUrl" target="_blank">Read</a>
-      </button>
+    <div class="flex justify-start align-middle w-full h-full">
+      <div class="flex flex-col">
+        <h2 class="card-title">{{ readingTitle }}</h2>
+        <p>{{ readingName }}</p>
+      </div>
+
+      <div class="ml-auto my-auto">
+        <button class="btn btn-sm">
+          <a [href]="bibleGatewayUrl" target="_blank">Read</a>
+        </button>
+      </div>
     </div>
   </div>
 </div>
