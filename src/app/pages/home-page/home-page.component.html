@@ -10,7 +10,7 @@
 } @else if (!this.dataHandlerService.currentDayData) {
 <div>No reading for today.</div>
 } @else {
-<div class="flex flex-col gap-4 w-[94vw]">
+<div class="flex flex-col gap-4 w-[94vw] h-full">
   <div class="alert flex flex-col w-full">
     <div class="flex align-middle justify-between gap-4 w-full flex-1">
       <p>
@@ -53,7 +53,10 @@
     [readingName]="this.dataHandlerService.currentDayData.thirdReading.name"
   />
 
-  <button class="btn" (click)="this.dataHandlerService.completeCurrentDay()">
+  <button
+    class="btn mt-auto mb-2"
+    (click)="this.dataHandlerService.completeCurrentDay()"
+  >
     Complete reading
   </button>
 </div>

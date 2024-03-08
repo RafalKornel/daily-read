@@ -11,7 +11,7 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './url-data-fetcher.component.scss',
 })
 export class UrlDataFetcherComponent {
-  url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8lV5rne65BYVKkLVaQGDMQiaDliI3MJjV13YL8Ou-hRxQzfDTOULj4440nrIzbMqrLMJVFJ0ffdkX/pub?gid=2078441506&single=true&output=csv&range=A2:E366`;
+  url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8lV5rne65BYVKkLVaQGDMQiaDliI3MJjV13YL8Ou-hRxQzfDTOULj4440nrIzbMqrLMJVFJ0ffdkX/pub?gid=2078441506&single=true&output=tsv&range=A2:E366`;
 
   isFetching: boolean = false;
 

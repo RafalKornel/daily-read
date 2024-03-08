@@ -10,7 +10,7 @@ export class AscensionDataParserService {
 
   static parseStringCSV(
     csvAsString: string,
-    delimeter = ','
+    delimeter = '\t'
   ): ReadingDayModel[] {
     let entries: ReadingDayModel[] = [];
     let currentPeriod = '';
