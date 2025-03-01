@@ -10,13 +10,19 @@
 } @else if (!this.dataHandlerService.currentDayData) {
 <div>No reading for today.</div>
 } @else {
-<div class="flex flex-col gap-4 w-[94vw] h-full">
+<div class="flex flex-col gap-2 w-[94vw] h-full">
   <div class="alert flex flex-col w-full">
-    <div class="flex align-middle justify-between gap-4 w-full flex-1">
-      <p>
-        Day {{ dataHandlerService.currentDay }} /
-        {{ dataHandlerService.maxDay }}
-      </p>
+    <div class="flex flex-col align-middle justify-between gap-2 w-full flex-1">
+      <div class="flex flex-row w-full justify-evenly">
+        <p class="">
+          {{ dataHandlerService.currentDay }} /
+          {{ dataHandlerService.maxDay }}
+        </p>
+
+        <div class="">
+          Period: {{ this.dataHandlerService.currentDayData.period }}
+        </div>
+      </div>
 
       <progress
         class="progress progress-info my-auto flex-1"
@@ -24,15 +30,11 @@
         [max]="dataHandlerService.maxDay"
       ></progress>
     </div>
-
-    <div class="w-full">
-      Period: {{ this.dataHandlerService.currentDayData.period }}
-    </div>
   </div>
 
   <app-reading-card
     variant="accent"
-    readingTitle="First reading"
+    readingTitle="First"
     imageUrl="/assets/first-reading.jpg"
     [readingName]="this.dataHandlerService.currentDayData.firstReading.name"
   />
@@ -40,7 +42,7 @@
   @if(this.dataHandlerService.currentDayData.secondReading) {
   <app-reading-card
     variant="secondary"
-    readingTitle="Second reading"
+    readingTitle="Second"
     imageUrl="/assets/second-reading.jpg"
     [readingName]="this.dataHandlerService.currentDayData.secondReading.name"
   />
@@ -48,7 +50,7 @@
 
   <app-reading-card
     variant="primary"
-    readingTitle="Third reading"
+    readingTitle="Third"
     imageUrl="/assets/third-reading.jpg"
     [readingName]="this.dataHandlerService.currentDayData.thirdReading.name"
   />
